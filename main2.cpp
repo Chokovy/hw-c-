@@ -6,37 +6,53 @@ class SelfRef
 private:
 	int num;
 public:
-	SelfRef(int n) : num(n)				//¸â¹ö ÀÌ´Ï¼È¶óÀÌÀú.  num = n;
+	SelfRef(int n) : num(n)				//ë©¤ë²„ ì´ë‹ˆì…œë¼ì´ì €.  num = n;
 	{
-		cout << "°´Ã¼»ı¼º" << endl;
+		cout << "ê°ì²´ìƒì„±" << endl;
 	}
 	SelfRef& Adder(int n)
 	{
 		num += n;
-		return *this;					//ÀÚ±â ÀÚ½ÅÀÇ ÂüÁ¶¿¡ »ç¿ë°¡´É	
+		return *this;					//ìê¸° ìì‹ ì˜ ì°¸ì¡°ì— ì‚¬ìš©ê°€ëŠ¥	
 	}
 	SelfRef& ShowTwoNumber()
 	{
 		cout << num << endl;
-		return *this;					//¸¶Âù°¡Áö									-> ±Ùµ¥ ¿Ö ¿©±â¿¡ ÀÌ°É ½á¾ßµÇ´ÂÁö Á¤È®ÇÏ°Ô ¸ğ¸£°ÚÀ½. ¾²¶ó°íÇÏ¸é ¸ø¾µ µí
+		return *this;					//ë§ˆì°¬ê°€ì§€									
 	}
+	/*void ShowTwoNumber() {
+		cout << num << endl;
+	}*/
 };
 
 int main(void)
 {
-	SelfRef obj(3);						//¸â¹ö ÀÌ´Ï¼È¶óÀÌÀú¿¡ ÀÇÇØ obj - num¿¡ 3ÀÌ ÀúÀåµÊ.											// Ãâ·Â : °´Ã¼»ı¼º
-	SelfRef &ref = obj.Adder(2);		//self-reference. num¿¡ ±âÁ¸ÀÇ 3¿¡ +2ÇØ¼­ 5°¡ ÀúÀåµÊ  (obj.num == ref.num)
-										//ref °´Ã¼°¡ obj °´Ã¼ÀÇ ÂüÁ¶ÀÚ°¡ µÇ¾î¼­ ¸â¹öº¯¼ö num¿¡ ´ëÇÑ ¿µÇâÀ» °°ÀÌ ¹Ş°í ÀÖÀ½.
+	SelfRef obj(3);						//ë©¤ë²„ ì´ë‹ˆì…œë¼ì´ì €ì— ì˜í•´ obj - numì— 3ì´ ì €ì¥ë¨.											// ì¶œë ¥ : ê°ì²´ìƒì„±
+	SelfRef &ref = obj.Adder(2);		//self-reference. numì— ê¸°ì¡´ì˜ 3ì— +2í•´ì„œ 5ê°€ ì €ì¥ë¨  (obj.num == ref.num)
+										//ref ê°ì²´ê°€ obj ê°ì²´ì˜ ì°¸ì¡°ìê°€ ë˜ì–´ì„œ ë©¤ë²„ë³€ìˆ˜ numì— ëŒ€í•œ ì˜í–¥ì„ ê°™ì´ ë°›ê³  ìˆìŒ.
 
 	
 
-	obj.ShowTwoNumber();				//Ãâ·ÂÇÔ¼ö È£Ãâ																				// Ãâ·Â : 5
-	ref.ShowTwoNumber();																											// Ãâ·Â : 5
+	obj.ShowTwoNumber();				//ì¶œë ¥í•¨ìˆ˜ í˜¸ì¶œ																				// ì¶œë ¥ : 5
+	ref.ShowTwoNumber();																											// ì¶œë ¥ : 5
 
-	ref.Adder(1).ShowTwoNumber().Adder(2).ShowTwoNumber();		//num +=1 , Ãâ·Â, num +=2 Ãâ·Â										// Ãâ·Â : 6
+	ref.Adder(1).ShowTwoNumber().Adder(2).ShowTwoNumber();		//num +=1 , ì¶œë ¥, num +=2 ì¶œë ¥										// ì¶œë ¥ : 6
 																																	//		  8
 
-	// +) ShowTwoNumber() ÇÔ¼ö°¡ ±×³É Ãâ·Â¸¸ ÇØÁÖ±æ·¡ voidÇüÀ¸·Î ÇÑ ¹ø ½áºÃ¾ú´Âµ¥  ¸¶Áö¸·ÁÙ ref¿¡ »¡°£ÁÙ ¶ß¸é¼­ [½Ä¿¡ Å¬·¡½º Çü½ÄÀÌ ÀÖ¾î¾ßÇÏ´Âµ¥ voidÇü½ÄÀÌ ÀÖÀ½] ÀÌ¶ó°í ¿À·ù¶ä
-																										//ÂüÁ¶ÀÚ¿©¼­? 
+
+	  
+	// ë§Œì•½ í•¨ìˆ˜ì˜ ì›í˜•ì´ SelfRef ShowTwoNumber() {} ë¼ë©´, *thisë¥¼ ë°˜í™˜í•  ë•Œ ì„ì‹œê°ì²´ê°€ ìƒˆë¡œ ìƒì„±ë˜ê¸° ë•Œë¬¸ì—, ë°˜ë“œì‹œ ì°¸ì¡°ë¥¼ ë°˜í™˜í•´ì•¼í•¨.(== ë°˜í™˜í˜•ì´ ì°¸ì¡°ìì—¬ì•¼ í•¨)
+	// ë”°ë¼ì„œ ë°˜í™˜í˜•ì´ SelfRef ì—¬ì„œëŠ” ì•ˆ ë˜ê³  SelfRef& ì—¬ì•¼ í•¨.		
+
+
+	// +) ShowTwoNumber() í•¨ìˆ˜ê°€ ê·¸ëƒ¥ ì¶œë ¥ë§Œ í•´ì£¼ê¸¸ë˜ voidí˜•ìœ¼ë¡œ í•œ ë²ˆ ì¨ë´¤ì—ˆëŠ”ë°  ë§ˆì§€ë§‰ì¤„ refì— ë¹¨ê°„ì¤„ ëœ¨ë©´ì„œ [ì‹ì— í´ë˜ìŠ¤ í˜•ì‹ì´ ìˆì–´ì•¼í•˜ëŠ”ë° voidí˜•ì‹ì´ ìˆìŒ] ì´ë¼ê³  ì˜¤ë¥˜ëœ¸
+	// -> ë§Œì•½ì— ShowTwoNumber()ë¥¼ voidí˜•ìœ¼ë¡œ ì¼ì„ ë•Œ,  ref.ShowTwoNumber();ë§Œ í•˜ë©´ ë¬¸ì œ ì—†ìŒ. ìê¸°ì°¸ì¡° í•¨ìˆ˜ì¸ Adder& ê¹Œì§€ ê°™ì´ ë¶€ë¥´ë‹ˆê¹Œ ë¬¸ì œ ìƒê¸°ëŠ” ë“¯.
+	/*
+	ref.Adder(1);
+	ref.ShowTwoNumber();
+	ref.Adder(2);
+	ref.ShowTwoNumber();					ì´ë ‡ê²Œ Adderë‘ ShowTwoNumberë‘ í•œ ì¤„ë¡œ ì•ˆ ë¶€ë¥´ë©´ ë¬¸ì œ ì—†ìŒ	
+	*/
+
 	return 0;
 }
