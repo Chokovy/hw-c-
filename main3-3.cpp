@@ -1,47 +1,47 @@
 #include<iostream>
 using namespace std;
-class Book							// Ã¥ Å¬·¡½º
+class Book							// ì±… í´ë˜ìŠ¤
 {
 private:
 	const char* title;			
 	const char* isbn;
 	const int price;
 public :
-	Book(const char* a, const char* b, int c) : title(a), isbn(b), price(c) {	// »ı¼ºÀÚ
-	}							// »ó¼ö°ªÀ» Àü´ŞÇÏ´Â°Å´Ï±î const·Î ¹Ş±â-> 6~8¹ø ÁÙµµ constÈ­.
+	Book(const char* a, const char* b, int c) : title(a), isbn(b), price(c) {	// ìƒì„±ì
+	}							// ìƒìˆ˜ê°’ì„ ì „ë‹¬í•˜ëŠ”ê±°ë‹ˆê¹Œ constë¡œ ë°›ê¸°-> 6~8ë²ˆ ì¤„ë„ constí™”.
 
 	void ShowBookInfo() {
-		cout << "Á¦¸ñ: " << title << endl;
+		cout << "ì œëª©: " << title << endl;
 		cout << "ISBM: " << isbn << endl;
-		cout << "°¡°İ: " << price << endl;
+		cout << "ê°€ê²©: " << price << endl;
 	}
 
 };
 
-class EBook : public Book	// ÀüÀÚÃ¥ Å¬·¡½º
+class EBook : public Book	// ì „ìì±… í´ë˜ìŠ¤
 {
 private:
-	const char* DRMkey;		// ÀüÀÚÃ¥¿¡ »ğÀÔµÇ´Â º¸¾È °ü·Ã Å° Á¤º¸
+	const char* DRMkey;		// ì „ìì±…ì— ì‚½ì…ë˜ëŠ” ë³´ì•ˆ ê´€ë ¨ í‚¤ ì •ë³´
 public :
-	EBook(const char* title, const char* isbn, int price, const char* key) : Book(title, isbn, price) {	//ºÎ¸ğ Å¬·¡½º title, isbn,price¸¦ ÃÊ±âÈ­.
-																			//ºÎ¸ğ Å¬·¡½ºÀÇ »ı¼ºÀÚ¸¦ ÀÌ¿ëÇØ¾ß ºÎ¸ğÅ¬·¡½ºÀÇ private º¯¼öµéÀ» ÃÊ±âÈ­ÇÒ ¼ö ÀÖ±â ¶§¹®.
+	EBook(const char* title, const char* isbn, int price, const char* key) : Book(title, isbn, price) {	//ë¶€ëª¨ í´ë˜ìŠ¤ title, isbn,priceë¥¼ ì´ˆê¸°í™”.
+									       //ë¶€ëª¨ í´ë˜ìŠ¤ì˜ ìƒì„±ìë¥¼ ì´ìš©í•´ì•¼ ë¶€ëª¨í´ë˜ìŠ¤ì˜ private ë³€ìˆ˜ë“¤ì„ ì´ˆê¸°í™”í•  ìˆ˜ ìˆê¸° ë•Œë¬¸.
 		DRMkey = key;
 	}
 
 	void ShowEBookInfo() {
-		ShowBookInfo();		//»ó¼Ó¹Ş¾ÒÀ¸´Ï ºÎ¸ğ ÇÔ¼öÀÇ public ÇÔ¼ö »ç¿ë °¡´É
-		cout << "ÀÎÁõÅ°: " << DRMkey << endl;
+		ShowBookInfo();		//ìƒì†ë°›ì•˜ìœ¼ë‹ˆ ë¶€ëª¨ í•¨ìˆ˜ì˜ public í•¨ìˆ˜ ì‚¬ìš© ê°€ëŠ¥
+		cout << "ì¸ì¦í‚¤: " << DRMkey << endl;
 	}
 
 };
 
 int main()
 {
-	Book book("ÁÁÀº C++", "555-12345-890-0", 20000);
+	Book book("ì¢‹ì€ C++", "555-12345-890-0", 20000);
 	book.ShowBookInfo();
 	cout << endl;
 	cout << endl;
-	EBook ebook("ÁÁÀº C++ ebook", "555-12345-890-1", 10000, "fdx920i8kiw");
+	EBook ebook("ì¢‹ì€ C++ ebook", "555-12345-890-1", 10000, "fdx920i8kiw");
 	ebook.ShowEBookInfo();
 	return 0;
 }
